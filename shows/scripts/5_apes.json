@@ -1,0 +1,11 @@
+[
+  {
+    "dialog": "Apes 1",
+    "cmd": "n0e13;n0cffffff;n0d15;n10e6;n10c003399;",
+    "time": 13000
+  },
+  {
+    "dialog": "[End]",
+    "cmd": "n0e7;n0d10;"
+  }
+]

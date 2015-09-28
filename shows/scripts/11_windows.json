@@ -1,0 +1,11 @@
+[
+  {
+    "dialog": "Wongblows",
+    "cmd": "n0cffffff;n0d15;n0e13;n10c001066;n10e7;",
+    "time": 5000
+  },
+  {
+    "dialog": "[End]",
+    "cmd": "n0d10;n0e7;"
+  }
+]

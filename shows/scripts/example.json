@@ -1,0 +1,24 @@
+[
+  {
+    "cmd": "c123",
+    "time": 20
+  },
+  {
+    "cmd": "p2",
+    "time": 30
+  },
+  {
+    "cmd": "t2",
+    "time": 2000
+  },
+  {
+    "cmd": "c123",
+    "dialogue": "HURP A DURP",
+    "sound": "photograph.mp3",
+    "time": 1000
+  },
+  {
+    "cmd": "d35",
+    "time": 0
+  }
+]

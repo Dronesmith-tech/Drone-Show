@@ -1,0 +1,161 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <h1 class="page-header">Control Board</h1>
+  <div class="row">
+    <div class="col-sm-2" ng-repeat="thing in awesomeThings track by $index">
+
+      <div
+        id="EventBox"
+        class="panel panel-default"
+        ng-init="changeNameForm=false"
+      >
+
+        <!-- Action Button -->
+        <button
+          type="button"
+          style="padding-bottom: 80px;"
+          class="btn btn-default btn-block"
+          ng-class="{'btn-primary': (thing.cmd || thing.script || thing.sound)}"
+          ng-click="action(thing)"
+        >
+          {{(thing.name || ("Action-" + ($index + 1)))}} <br> {{ "Command: " + (thing.cmd || thing.script)}} <br> {{ "Sound: " + thing.sound}}
+        </button>
+
+      <div class="panel-body">
+        <!-- Name -->
+        <a ng-hide="changeNameForm" href="" ng-click="changeNameForm=true">
+          Settings
+        </a>
+        <span ng-hide="changeNameForm">|</span>
+        <a ng-hide="changeNameForm" href="" ng-click="stopMusic(thing)">
+          Stop Music
+        </a>
+
+        <!-- Settings Form -->
+        <form
+          class="form-inline"
+          ng-show="changeNameForm"
+          ng-init="
+            useRawCmdForm=false;
+            cmdChannel = 2;
+            cmdValue = 0;
+          "
+        >
+
+          <!-- Name Field -->
+          <fieldset class="form-group">
+            <label>Name</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="new name"
+              ng-model="thing.name"
+              ng-keyup="$event.keyCode == 13 && updateName(thing);"
+            >
+          </fieldset>
+
+          <fieldset class="checkbox">
+            <label>
+              <input
+                type="checkbox"
+                ng-model="useRawCmdForm"
+              >
+              Use Raw Command
+            </label>
+          </fieldset>
+
+          <!-- Command Channel Select -->
+          <fieldset class="form-group" ng-show="useRawCmdForm">
+            <label>Raw Command String</label>
+            <!-- <select
+              class="form-control"
+              ng-model="cmdChannel"
+              ng-change="updateName(thing, useRawCmdForm, cmdChannel, cmdValue);"
+            >
+              <option value="1">Control</option>
+              <option value="2">Shape</option>
+              <option value="3">Color (unused)</option>
+              <option value="4">Y Pos/Move</option>
+              <option value="5">X Pos/Move</option>
+              <option value="6">Y Scale</option>
+              <option value="7">X Scale/Spin</option>
+              <option value="8">Rotation</option>
+              <option value="9">Overall Scale</option>
+              <option value="10">Sine Edges</option>
+              <option value="11">Dotted Edges</option>
+              <option value="12">Draw Speed</option>
+            </select>
+
+            <input
+              type="number"
+              class="form-control"
+              placeholder="0"
+              min="0"
+              max="255"
+              step="1"
+              ng-model="cmdValue"
+              ng-keyup="$event.keyCode == 13 && updateName(thing, useRawCmdForm, cmdChannel, cmdValue);"
+            > -->
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              ng-model="thing.cmd"
+              ng-keyup="$event.keyCode == 13 && updateName(thing, useRawCmdForm, cmdChannel, cmdValue);"
+            >
+          </fieldset>
+
+          <!-- Script select -->
+          <fieldset class="form-group" ng-hide="useRawCmdForm">
+            <label>Script</label>
+            <select
+              class="form-control"
+              ng-model="thing.script"
+              ng-change="updateName(thing, useRawCmdForm, cmdChannel, cmdValue);"
+            >
+              <option ng-repeat="script in scriptList track by $index" value="{{script}}">{{script}}</option>
+            </select>
+          </fieldset>
+
+          <!-- Sound select -->
+          <fieldset class="form-group" ng-hide="useRawCmdForm">
+            <label>Sound</label>
+            <select
+              class="form-control"
+              ng-model="thing.sound"
+              ng-change="updateName(thing, useRawCmdForm, cmdChannel, cmdValue);"
+            >
+              <option ng-repeat="sound in soundList track by $index" value="{{sound}}">{{sound}}</option>
+            </select>
+          </fieldset>
+
+          <button
+            class="btn btn-block btn-default"
+            ng-click="updateClear(thing); changeNameForm=false"
+          >
+            Clear
+          </button>
+
+          <!-- Update Button -->
+          <button
+            class="btn btn-block btn-default"
+            ng-click="updateName(thing, useRawCmdForm, cmdChannel, cmdValue); changeNameForm=false"
+          >
+            Update
+          </button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>Drone Show v0.0.1 |
+        &copy; 2015 <a target="_blank" href="http://www.skyworksas.com/">Skyworks Aerial Systems</a>
+      </p>
+  </div>
+</footer>
