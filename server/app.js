@@ -15,7 +15,7 @@ var server = require('http').createServer(app);
 
 // Set root file path
 global.APP_ROOT = require('path').resolve(__dirname, '../');
-global.SERIAL_DEV = "/dev/tty.usbmodem1421";
+global.SERIAL_DEV = "/dev/tty.usbserial-DN0024DJ";
 
 require('./config/express')(app);
 require('./routes')(app);

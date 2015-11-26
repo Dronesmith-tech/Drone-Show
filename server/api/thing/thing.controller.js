@@ -153,8 +153,8 @@ var SerialInit = function() {
       });
 
       serial.on('data', function(data) {
-        console.log(''+data);
-        // mav.parse(data);
+        //console.log(''+data);
+        mav.parse(data);
       });
     }
   });
@@ -177,7 +177,7 @@ var SerialInit = function() {
 }
 
 // NOTE uncomment this
-SerialInit();
+// SerialInit();
 InitAudio();
 
 // Get list of things
