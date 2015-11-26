@@ -177,7 +177,7 @@ var SerialInit = function() {
 }
 
 // NOTE uncomment this
-// SerialInit();
+SerialInit();
 InitAudio();
 
 // Get list of things
