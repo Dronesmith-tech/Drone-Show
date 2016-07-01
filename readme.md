@@ -1,20 +1,18 @@
-# PewPew
-A Skyworks Production
+# Payload Cli
 
 ## User Guide
 
 ### Using the command line program
-1. First, *copy* `Engineering/Software/pewpew/` folder to your local computer.
-2. Ensure a telemetry radio is plugged into your respected PC, and make note of its device path (OSX) or COM port number (Windows).
-3. If you have not already, [download and install](https://nodejs.org/en/download/) Nodejs.
-4. In your terminal, change to the `repl` directory, and invoke `node pewpew.js <serialdevpath> --repl`. `<serialdevpath>` is the devive path or COM port at which your telemetry radio is located.
+1. Ensure a telemetry radio is plugged into your respected PC, and make note of its device path (OSX) or COM port number (Windows).
+2. If you have not already, [download and install](https://nodejs.org/en/download/) Nodejs.
+3. In your terminal, change to the `repl` directory, and invoke `node pewpew.js <serialdevpath> --repl`. `<serialdevpath>` is the devive path or COM port at which your telemetry radio is located.
 
 If everything works, you should see a message similar to this:
 `pew> Connected to serial device.`
 
 You may need to reinstall the node modules depending on your PC and operating system. If you are having node errors that are crashing the program, *ensure* that you are in the root of the `repl` directory, and run `rm -rf node_modules/` to remove the modules directory. Then, run `npm install` to reinstall the modules.
 
-**NOTE**: Currently, only versions of nodejs *prior* to the io.js merge are supported. This is due to the politics of open source software and the merge issues that originate from it. `Nodejs v4+` **will not work**. If you are using OSX, you can rollback to the supported version by running `brew switch node 0.12.7` in the command line. 
+**NOTE**: Currently, only versions of nodejs *prior* to the io.js merge are supported. This is due to the politics of open source software and the merge issues that originate from it. `Nodejs v4+` **will not work**. If you are using OSX, you can rollback to the supported version by running `brew switch node 0.12.7` in the command line.
 
 Commands:
 
@@ -83,7 +81,7 @@ DMX channels: `#c`. All values range. `0-255`.
 3. Color: Sets Overall color of the shape.
 
 	Current version only has blue and controlled by green pin.
-	
+
 		0-1: White
 		10-19: Green
 4. X Position (horizontal): greater values increase speed
@@ -148,120 +146,117 @@ DMX channels: `#c`. All values range. `0-255`.
 
 #### Neopixels
 Syntax:
-	`n<number>[op]<args>` 
+	`n<number>[op]<args>`
 
 - **n** Neopixel select
 - **<number>** Quadrent select
 
 	`0: Face`
-	
+
 	`1: Ring 1`
-	
-	`2: Ring 2` 
-	
+
+	`2: Ring 2`
+
 	`3: Ring 3`
-	
-	`4: Ring 4` 
-	
+
+	`4: Ring 4`
+
 	`5: All`
-	
+
 	`6: Right Half`
-	
+
 	`7: Left Half`
-	
+
 	`8: Diagonal Right`
-	
+
 	`9: Diagonal Left`
-	
+
 	`10: Everything but the face`
-	
+
 	`11: Back`
-	
+
 	`12: Front`
 - **[op]** Operation to perform on section
-	
+
 	- **e** select effect
-		
+
 		`0: None`
-		
+
 		`1: Comet` 	   
-		
+
 		`2: Larson`
-		
+
 		`3: Chase`
-		
+
 		`4: Pulse`
-		
+
 		`5: Static` 	
-		
+
 		`6: Fade`
-		
+
 		`7: Fill`
-		
+
 		`8: Glow`
-		
+
 		`9: Rainbow `
-		
+
 		`10: Strobe `   	    	    	     
-		
+
 		`11: Sine wave `
-		
+
 		`12: Random `
-		
+
 		`13: Talking`
-		
+
 	- **c** color select
-	
+
 		`<hex> - 6 value RGB hex value. Must be 6 chars.`
-		
-		Example: `n2cff00ff;`  - Set color of ring 2 to purple. 
-	
+
+		Example: `n2cff00ff;`  - Set color of ring 2 to purple.
+
 	- **a** set area of effect (AoE)
-	
+
 		`<integer> - number of neopixels for area effect. Only applies to certain effects.`
-		
-		Example: `n0e2;n0cff0000;n0a1;` - Create a cylon style larson effect on the face. 
-		
+
+		Example: `n0e2;n0cff0000;n0a1;` - Create a cylon style larson effect on the face.
+
 	- **d** set animation rate in milliseconds
-	
+
 		`<integer> - rate in milliseconds to update`
-		
+
 		Example: `n10e2;n6cff0000;n7c0000ff;n6d1;n7d2;` - Create a police siren style effect.
-		
+
 	- **f** fill in a solid color
-	
+
 		`<hex> -  6 value RGB hex value. Must be 6 chars.`
-		
-		Example: `n5f333333` - Set drone color to a metallic gray. 
-		
+
+		Example: `n5f333333` - Set drone color to a metallic gray.
+
 	- **l** turn loop on or off. Only applies to certain effects.
-		
+
 		`<bool> 0 is false, 1 is true`
-	
+
 	- **i** invert the direction of the effect. Only applies to certain effects.
-	
+
 		`<bool> 0 is false, 1 is true`
-		
+
 #### Control Values
 
 	c2; turn off neopixels.
-	
+
 	c3; turn on neopixels with default launch effects.
-	
+
 	c4; turn off laser (galvos will still run)
-	
+
 	c5; turn on laser  
-	
+
 #### Bottom Leds
 
 	p<number>[color]
 	<number>: 1-4, the led to select
 	<color>: Hex color value. Must be 6 chars.
-	
-Example: `p2ff00ff;` - set LED 2 to purple.
 
-### Forge?
-Frankie TODO...
+Example: `p2ff00ff;` - set LED 2 to purple.
 
 ## Current Issues & Todos
 
@@ -269,14 +264,12 @@ Frankie TODO...
 
 - Certain effects in effect library have issues, and/or are largely untested.
 
-- Improve timing/update system in effect library. Currently, the delay ticker actually *delays* the entire update, creating unneeded latency, where it should instead be used as a delta value for updating the animation function, ensuring there is no latency on the update. 
+- Improve timing/update system in effect library. Currently, the delay ticker actually *delays* the entire update, creating unneeded latency, where it should instead be used as a delta value for updating the animation function, ensuring there is no latency on the update.
 
-- Arduino being used as controller for pewpew is at memory capacity. 
+- Arduino being used as controller for pewpew is at memory capacity.
 
 - Add checksum support for serial protocol (CRC-16, most likely)
 
-- Implement better gui for droneshow. 
+- Implement better gui for droneshow.
 
 - Increase maximum command size? Currently 64. Requires update from Arduino.
-
-
