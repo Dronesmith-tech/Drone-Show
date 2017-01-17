@@ -1,6 +1,6 @@
 <img src="https://i1.wp.com/www.dronesmith.io/wp-content/uploads/2015/12/12038158_930985793614315_1343055214045108371_n-600x400.jpg">
 
-# Payload Cli
+# Drone Show LED/Sound Board
 
 ## User Guide
 
